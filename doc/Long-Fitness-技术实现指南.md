@@ -5,7 +5,7 @@
 ### 技术栈配置
 ```bash
 # 使用Tauri2创建项目
-npm create tauri-app@latest long-fitness
+pnpm create tauri-app@latest long-fitness
 cd long-fitness
 
 # 选择技术栈
@@ -279,8 +279,8 @@ export const useUserStore = defineStore('user', {
 // tauri.conf.json
 {
   "build": {
-    "beforeBuildCommand": "npm run build",
-    "beforeDevCommand": "npm run dev",
+    "beforeBuildCommand": "pnpm run build",
+    "beforeDevCommand": "pnpm run dev",
     "devPath": "http://localhost:1420",
     "distDir": "../dist"
   },
@@ -519,18 +519,18 @@ describe('ExerciseCard', () => {
 ### 桌面端打包
 ```bash
 # 构建生产版本
-npm run tauri build
+pnpm run tauri build
 
 # 平台特定构建
-npm run tauri build -- --target universal-apple-darwin  # macOS
-npm run tauri build -- --target x86_64-pc-windows-msvc  # Windows
-npm run tauri build -- --target x86_64-unknown-linux-gnu # Linux
+pnpm run tauri build -- --target universal-apple-darwin  # macOS
+pnpm run tauri build -- --target x86_64-pc-windows-msvc  # Windows
+pnpm run tauri build -- --target x86_64-unknown-linux-gnu # Linux
 ```
 
 ### 移动端发布
 ```bash
 # Android构建
-npm run tauri android build
+pnpm run tauri android build
 
 # 生成APK和AAB文件
 # 发布到Google Play Store
