@@ -25,7 +25,7 @@
 import { withDefaults, computed } from 'vue'
 
 interface ButtonProps {
-  variant?: 'primary' | 'secondary' | 'text'
+  variant?: 'primary' | 'secondary' | 'text' | 'outline'
   size?: 'small' | 'medium' | 'large' | 'sm' | 'md' | 'lg'
   disabled?: boolean
   loading?: boolean
@@ -127,6 +127,26 @@ const handleClick = (event: MouseEvent) => {
 .lf-button--text:hover:not(.lf-button--disabled):not(.lf-button--loading) {
   color: var(--color-info-dark);
   text-decoration: underline;
+}
+
+/* Outline变体样式 */
+.lf-button--outline {
+  background-color: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  border-radius: var(--border-radius-md);
+}
+
+.lf-button--outline:hover:not(.lf-button--disabled):not(.lf-button--loading) {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.lf-button--outline:active:not(.lf-button--disabled):not(.lf-button--loading) {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
 }
 
 /* 按钮尺寸 */
