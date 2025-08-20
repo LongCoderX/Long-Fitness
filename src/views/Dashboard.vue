@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/user.store'
 import { useExerciseStore } from '@/stores/exercise.store'
 import { useNutritionStore } from '@/stores/nutrition.store'
@@ -8,6 +9,7 @@ import { usePlatform } from '@/composables/usePlatform'
 import Card from '@/components/ui/Card.vue'
 import Button from '@/components/ui/Button.vue'
 
+const router = useRouter()
 const userStore = useUserStore()
 const exerciseStore = useExerciseStore()
 const nutritionStore = useNutritionStore()
@@ -75,7 +77,24 @@ onMounted(async () => {
 
 const handleQuickAction = (action: string) => {
   console.log('Quick action:', action)
-  // 这里可以跳转到相应的记录页面
+  
+  // 根据action类型跳转到相应的页面
+  switch (action) {
+    case 'exercise':
+      router.push('/exercise')
+      break
+    case 'nutrition':
+      router.push('/nutrition')
+      break
+    case 'sleep':
+      router.push('/sleep')
+      break
+    case 'stress':
+      router.push('/stress')
+      break
+    default:
+      console.warn('Unknown action:', action)
+  }
 }
 
 const toggleGoalCompletion = (goalId: number) => {
