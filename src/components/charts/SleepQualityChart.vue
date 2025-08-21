@@ -124,7 +124,8 @@ const updateChart = () => {
   const currentData = props.data.dimensions.map(d => d.current)
   const previousData = props.data.dimensions.map(d => d.previous)
   const labels = props.data.dimensions.map(d => d.dimension)
-  const maxValues = props.data.dimensions.map(d => d.max)
+// maxValues 用于计算图表的最大刻度值
+  // const maxValues = props.data.dimensions.map(d => d.max)
 
   chartInstance.value.data.labels = labels
   chartInstance.value.data.datasets = [
@@ -157,6 +158,7 @@ const updateChart = () => {
   ]
 
   // 更新刻度最大值
+  const maxValues = props.data.dimensions.map(d => d.max)
   chartInstance.value.options.scales!.r!.max = Math.max(...maxValues)
 
   chartInstance.value.update()

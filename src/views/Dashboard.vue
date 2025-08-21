@@ -5,21 +5,17 @@ import { useUserStore } from '@/stores/user.store'
 import { useExerciseStore } from '@/stores/exercise.store'
 import { useNutritionStore } from '@/stores/nutrition.store'
 import { useSleepStore } from '@/stores/sleep.store'
-import { usePlatform } from '@/composables/usePlatform'
 import Card from '@/components/ui/Card.vue'
-import Button from '@/components/ui/Button.vue'
 import CalorieIntakeChart from '@/components/charts/CalorieIntakeChart.vue'
 import ExerciseProgressChart from '@/components/charts/ExerciseProgressChart.vue'
 import SleepQualityChart from '@/components/charts/SleepQualityChart.vue'
 import StressTrendChart from '@/components/charts/StressTrendChart.vue'
-import SidebarNavigation from '@/components/layout/SidebarNavigation.vue'
 
 const router = useRouter()
 const userStore = useUserStore()
 const exerciseStore = useExerciseStore()
 const nutritionStore = useNutritionStore()
 const sleepStore = useSleepStore()
-const platform = usePlatform()
 
 const isLoading = ref(true)
 
@@ -141,28 +137,6 @@ onMounted(async () => {
   }
 })
 
-const handleQuickAction = (action: string) => {
-  console.log('Quick action:', action)
-  
-  // 根据action类型跳转到相应的页面
-  switch (action) {
-    case 'exercise':
-      router.push('/exercise')
-      break
-    case 'nutrition':
-      router.push('/nutrition')
-      break
-    case 'sleep':
-      router.push('/sleep')
-      break
-    case 'stress':
-      router.push('/stress')
-      break
-    default:
-      console.warn('Unknown action:', action)
-  }
-}
-
 const toggleGoalCompletion = (goalId: number) => {
   const goal = dailyGoals.value.find(g => g.id === goalId)
   if (goal) {
@@ -172,10 +146,7 @@ const toggleGoalCompletion = (goalId: number) => {
 </script>
 
 <template>
-  <div class="dashboard-layout">
-    <!-- 侧边导航栏 -->
-    <SidebarNavigation class="sidebar" />
-
+  <div class="dashboard">
     <!-- 主内容区域 -->
     <main class="main-content">
       <!-- 顶部欢迎区域 -->
@@ -322,28 +293,9 @@ const toggleGoalCompletion = (goalId: number) => {
 </template>
 
 <style scoped>
-/* 主布局样式 */
-.dashboard-layout {
-  display: flex;
-  min-height: 100vh;
-  background-color: var(--color-gray-50);
-}
-
-/* 侧边栏样式 */
-.sidebar {
-  width: 240px;
-  flex-shrink: 0;
-  background-color: var(--color-white);
-  border-right: 1px solid var(--color-gray-200);
-  box-shadow: var(--shadow-md);
-  z-index: 10;
-}
-
 /* 主内容区域样式 */
 .main-content {
-  flex: 1;
   padding: var(--spacing-xl);
-  overflow-y: auto;
   background-color: var(--color-gray-50);
 }
 

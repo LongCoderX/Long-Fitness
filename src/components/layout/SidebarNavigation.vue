@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
+import { useLayoutStore } from '@/stores/layout.store'
 
 const router = useRouter()
 const route = useRoute()
+const layoutStore = useLayoutStore()
 
 // 导航项配置
 const navItems = ref([
@@ -28,9 +30,9 @@ const handleNavigation = (item: any) => {
   }
 }
 
-// 返回上一级
-const goBack = () => {
-  router.go(-1)
+// 隐藏侧边栏
+const hideSidebar = () => {
+  layoutStore.hideSidebar()
 }
 </script>
 
@@ -50,10 +52,10 @@ const goBack = () => {
       </div>
     </nav>
 
-    <!-- 返回按钮 -->
-    <div class="back-button" @click="goBack">
-      <span class="back-icon">←</span>
-      <span class="back-label">返回上级</span>
+    <!-- 隐藏侧边栏按钮 -->
+    <div class="hide-button" @click="hideSidebar">
+      <span class="hide-icon">←</span>
+      <span class="hide-label">隐藏</span>
     </div>
   </aside>
 </template>
@@ -112,7 +114,7 @@ const goBack = () => {
   line-height: 1.4;
 }
 
-.back-button {
+.hide-button {
   display: flex;
   align-items: center;
   padding: var(--spacing-md) var(--spacing-lg);
@@ -125,19 +127,20 @@ const goBack = () => {
   margin-top: auto;
 }
 
-.back-button:hover {
+.hide-button:hover {
   background-color: var(--color-gray-100);
   color: var(--color-text-primary);
 }
 
-.back-icon {
+.hide-icon {
   font-size: 16px;
   margin-right: var(--spacing-md);
   width: 24px;
   text-align: center;
+  font-weight: 600;
 }
 
-.back-label {
+.hide-label {
   font-size: var(--font-size-body);
   line-height: 1.4;
 }
