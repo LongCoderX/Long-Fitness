@@ -12,6 +12,7 @@ import CalorieIntakeChart from '@/components/charts/CalorieIntakeChart.vue'
 import ExerciseProgressChart from '@/components/charts/ExerciseProgressChart.vue'
 import SleepQualityChart from '@/components/charts/SleepQualityChart.vue'
 import StressTrendChart from '@/components/charts/StressTrendChart.vue'
+import SidebarNavigation from '@/components/layout/SidebarNavigation.vue'
 
 const router = useRouter()
 const userStore = useUserStore()
@@ -171,15 +172,20 @@ const toggleGoalCompletion = (goalId: number) => {
 </script>
 
 <template>
-  <div class="dashboard desktop-view">
-    <!-- 顶部欢迎区域 -->
-    <Card class="welcome-card" shadow="md">
-      <h2>欢迎回来，{{ userStore.currentUser?.username || '用户' }}!</h2>
-      <p class="date">今天是 {{ new Date().toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' }) }}</p>
-    </Card>
+  <div class="dashboard-layout">
+    <!-- 侧边导航栏 -->
+    <SidebarNavigation class="sidebar" />
 
-    <!-- 主内容网格布局 -->
-    <div class="dashboard-grid">
+    <!-- 主内容区域 -->
+    <main class="main-content">
+      <!-- 顶部欢迎区域 -->
+      <Card class="welcome-card" shadow="md">
+        <h2>欢迎回来，{{ userStore.currentUser?.username || '用户' }}!</h2>
+        <p class="date">今天是 {{ new Date().toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' }) }}</p>
+      </Card>
+
+      <!-- 主内容网格布局 -->
+      <div class="dashboard-grid">
       <!-- 左侧列 - 数据概览和图表 -->
       <div class="left-column">
         <!-- 健康数据概览 -->
@@ -311,14 +317,34 @@ const toggleGoalCompletion = (goalId: number) => {
         </Card>
       </div>
     </div>
-  </div>
+  </main>
+</div>
 </template>
 
 <style scoped>
-.dashboard {
-  padding: var(--spacing-lg);
-  max-width: 1400px;
-  margin: 0 auto;
+/* 主布局样式 */
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--color-gray-50);
+}
+
+/* 侧边栏样式 */
+.sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  background-color: var(--color-white);
+  border-right: 1px solid var(--color-gray-200);
+  box-shadow: var(--shadow-md);
+  z-index: 10;
+}
+
+/* 主内容区域样式 */
+.main-content {
+  flex: 1;
+  padding: var(--spacing-xl);
+  overflow-y: auto;
+  background-color: var(--color-gray-50);
 }
 
 .welcome-card {
