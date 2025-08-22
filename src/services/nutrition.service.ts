@@ -1,5 +1,6 @@
 import { invoke } from '@tauri-apps/api/core'
 import { NutritionRecord, FoodItem } from '../types/nutrition.types'
+import { currentFoodService } from '../mocks/foodData'
 
 export const nutritionService = {
   // 获取营养记录
@@ -59,6 +60,46 @@ export const nutritionService = {
     } catch (error) {
       console.error('Failed to search food items:', error)
       return []
+    }
+  },
+
+  // 按分类获取食物
+  async getFoodsByCategory(category: string): Promise<FoodItem[]> {
+    try {
+      return await invoke('get_foods_by_category', { category })
+    } catch (error) {
+      console.error('Failed to get foods by category:', error)
+      return []
+    }
+  },
+
+  // 获取所有分类
+  async getAllCategories(): Promise<string[]> {
+    try {
+      return await invoke('get_all_categories')
+    } catch (error) {
+      console.error('Failed to get all categories:', error)
+      return []
+    }
+  },
+
+  // 获取热门标签
+  async getPopularTags(limit: number = 10): Promise<string[]> {
+    try {
+      return await invoke('get_popular_tags', { limit })
+    } catch (error) {
+      console.error('Failed to get popular tags:', error)
+      return []
+    }
+  },
+
+  // 获取营养范围
+  async getNutritionRange(): Promise<any> {
+    try {
+      return await invoke('get_nutrition_range')
+    } catch (error) {
+      console.error('Failed to get nutrition range:', error)
+      return {}
     }
   },
 
@@ -183,18 +224,30 @@ if (import.meta.env.DEV) {
     }
   ]
 
-  // 开发环境下的模拟实现
+  // 开发环境下的模拟实现 - 使用新的食物数据服务
   Object.assign(nutritionService, {
     async getFoodDatabase(): Promise<FoodItem[]> {
-      return mockFoodDatabase
+      return currentFoodService.getFoodDatabase()
     },
 
-    async searchFoodItems(query: string): Promise<FoodItem[]> {
-      return mockFoodDatabase.filter(item =>
-        item.name.toLowerCase().includes(query.toLowerCase()) ||
-        item.category.toLowerCase().includes(query.toLowerCase()) ||
-        item.tags.some(tag => tag.toLowerCase().includes(query.toLowerCase()))
-      )
+    async searchFoodItems(query: string, limit: number = 20): Promise<FoodItem[]> {
+      return currentFoodService.searchFoodItems(query, limit)
+    },
+
+    async getFoodsByCategory(category: string): Promise<FoodItem[]> {
+      return currentFoodService.getFoodsByCategory(category)
+    },
+
+    async getAllCategories(): Promise<string[]> {
+      return currentFoodService.getAllCategories()
+    },
+
+    async getPopularTags(limit: number = 10): Promise<string[]> {
+      return currentFoodService.getPopularTags(limit)
+    },
+
+    async getNutritionRange(): Promise<any> {
+      return currentFoodService.getNutritionRange()
     }
   })
 }
