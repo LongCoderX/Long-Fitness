@@ -19,7 +19,7 @@ const emit = defineEmits<{
 const categoryColors = {
   functional: 'var(--color-primary)',
   bodyweight: 'var(--color-success)',
-  posture: 'var(--color-info)'
+  posture: '#6B46C1' // 深紫色，确保与白色文字有足够对比度
 }
 
 // 难度颜色映射

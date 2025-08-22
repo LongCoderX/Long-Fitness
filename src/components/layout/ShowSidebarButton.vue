@@ -81,7 +81,7 @@ const handleMouseLeave = () => {
 }
 
 .show-sidebar-button:hover {
-  background-color: var(--color-primary-dark);
+  background-color: var(--color-success);
   transform: translateY(-50%) translateX(0) scale(1.05);
 }
 
