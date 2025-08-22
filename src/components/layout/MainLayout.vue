@@ -37,7 +37,7 @@ const mainContentStyle = computed(() => ({
 .main-content {
   min-height: 100vh;
   padding: var(--spacing-lg);
-  background-color: var(--color-gray-50);
+  background-color: var(--color-background-secondary);
   transition: margin-left 0.3s ease;
 }
 

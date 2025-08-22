@@ -22,8 +22,8 @@ body {
   font-family: var(--font-family-base);
   font-size: var(--font-size-body);
   font-weight: var(--font-weight-regular);
-  color: var(--color-gray-900);
-  background-color: var(--color-gray-100);
+  color: var(--color-text-primary);
+  background-color: var(--color-background-secondary);
   line-height: var(--line-height-normal);
 }
 
@@ -32,7 +32,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: var(--font-weight-semibold);
   line-height: var(--line-height-tight);
   margin-bottom: var(--spacing-md);
-  color: var(--color-gray-900);
+  color: var(--color-text-primary);
 }
 
 h1 {

@@ -5,12 +5,30 @@
   --color-secondary: #4ECDC4;  /* 清新绿 - 成功状态、健康指标 */
   --color-accent: #45B7D1;     /* 活力蓝 - 次要功能、信息提示 */
 
-  /* 中性色 */
-  --color-gray-900: #2D3748;   /* 深灰 - 主要文字 */
-  --color-gray-600: #718096;   /* 中灰 - 次要文字 */
+  /* 中性色 - 优化对比度 */
+  --color-gray-900: #1A202C;   /* 更深灰 - 主要文字（提高对比度） */
+  --color-gray-700: #4A5568;   /* 新增：中深灰 - 次级文字 */
+  --color-gray-600: #718096;   /* 中灰 - 辅助文字 */
+  --color-gray-400: #A0AEC0;   /* 新增：中浅灰 - 禁用状态、边框 */
   --color-gray-300: #E2E8F0;   /* 浅灰 - 背景、边框 */
-  --color-gray-100: #F7FAFC;   /* 极浅灰 - 卡片背景 */
+  --color-gray-200: #EDF2F7;   /* 新增：极浅灰 - 卡片背景 */
+  --color-gray-100: #F7FAFC;   /* 超浅灰 - 页面背景 */
   --color-white: #FFFFFF;      /* 白色 */
+  
+  /* 文本颜色 - 确保足够的对比度 */
+  --color-text-primary: var(--color-gray-900);
+  --color-text-secondary: var(--color-gray-700);
+  --color-text-tertiary: var(--color-gray-600);
+  --color-text-disabled: var(--color-gray-400);
+  
+  /* 背景颜色 - 层次分明 */
+  --color-background-primary: var(--color-white);
+  --color-background-secondary: var(--color-gray-100);
+  --color-background-tertiary: var(--color-gray-200);
+  
+  /* 边框颜色 - 清晰可见 */
+  --color-border-primary: var(--color-gray-300);
+  --color-border-secondary: var(--color-gray-400);
 
   /* 语义色 */
   --color-success: #48BB78;    /* 成功 */

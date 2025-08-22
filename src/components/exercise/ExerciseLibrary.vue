@@ -194,12 +194,12 @@ onMounted(() => {
 
 /* 筛选工具栏 */
 .filter-toolbar {
-  background: var(--color-white);
+  background: var(--color-background-primary);
   padding: var(--spacing-lg);
   border-radius: var(--border-radius-lg);
   box-shadow: var(--shadow-sm);
   margin-bottom: var(--spacing-lg);
-  border: 1px solid var(--color-gray-200);
+  border: 1px solid var(--color-border-primary);
 }
 
 .search-box {
@@ -313,9 +313,9 @@ onMounted(() => {
 .empty-state {
   text-align: center;
   padding: var(--spacing-xl);
-  background: var(--color-white);
+  background: var(--color-background-primary);
   border-radius: var(--border-radius-lg);
-  border: 1px solid var(--color-gray-200);
+  border: 1px solid var(--color-border-primary);
 }
 
 .empty-icon {

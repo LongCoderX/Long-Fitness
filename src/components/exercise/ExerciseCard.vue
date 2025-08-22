@@ -121,10 +121,10 @@ const handleClick = () => {
 
 <style scoped>
 .exercise-card {
-  background: var(--color-white);
+  background: var(--color-background-primary);
   border-radius: var(--border-radius-lg);
   box-shadow: var(--shadow-md);
-  border: 1px solid var(--color-gray-200);
+  border: 1px solid var(--color-border-primary);
   padding: var(--spacing-lg);
   cursor: pointer;
   transition: all 0.2s ease;
