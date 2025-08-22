@@ -16,12 +16,7 @@ const mainContentStyle = computed(() => ({
 <template>
   <div class="main-layout">
     <!-- 侧边栏导航 -->
-    <SidebarNavigation 
-      :style="{ 
-        width: layoutStore.sidebarWidth,
-        transition: 'width 0.3s ease'
-      }" 
-    />
+    <SidebarNavigation />
     
     <!-- 显示侧边栏按钮（当侧边栏隐藏时显示） -->
     <ShowSidebarButton v-if="!layoutStore.sidebarVisible" />

@@ -37,7 +37,7 @@ const hideSidebar = () => {
 </script>
 
 <template>
-  <aside class="sidebar-navigation">
+  <aside class="sidebar-navigation" :class="{ 'sidebar-hidden': !layoutStore.sidebarVisible }">
     <!-- 导航项列表 -->
     <nav class="nav-list">
       <div
@@ -143,6 +143,14 @@ const hideSidebar = () => {
 .hide-label {
   font-size: var(--font-size-body);
   line-height: 1.4;
+}
+
+/* 侧边栏隐藏状态 */
+.sidebar-navigation.sidebar-hidden {
+  width: 0;
+  overflow: hidden;
+  border-right: none;
+  box-shadow: none;
 }
 
 /* 响应式设计 */
