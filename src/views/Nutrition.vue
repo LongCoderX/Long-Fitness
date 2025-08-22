@@ -106,14 +106,43 @@
           <li>⚠️ 注意控制晚餐的碳水摄入量</li>
         </ul>
       </Card>
+
+      <!-- 食物数据库入口 -->
+      <Card title="食物数据库" class="food-database-card">
+        <div class="food-database-content">
+          <p>探索丰富的食物营养信息，管理您的饮食记录</p>
+          <Button 
+            variant="primary" 
+            icon="🍎" 
+            @click="showFoodDatabase = true"
+            class="food-database-btn"
+          >
+            查看食物数据库
+          </Button>
+        </div>
+      </Card>
+    </div>
+
+    <!-- 食物数据库模态框 -->
+    <div v-if="showFoodDatabase" class="modal-overlay" @click="showFoodDatabase = false">
+      <div class="modal-content" @click.stop>
+        <div class="modal-header">
+          <h2>🍎 食物数据库</h2>
+          <button class="close-btn" @click="showFoodDatabase = false">✕</button>
+        </div>
+        <div class="modal-body">
+          <FoodDatabase />
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { ref, computed } from 'vue'
 import Card from '@/components/ui/Card.vue'
 import Button from '@/components/ui/Button.vue'
+import FoodDatabase from '@/components/nutrition/FoodDatabase.vue'
 
 const currentDate = computed(() => {
   return new Date().toLocaleDateString('zh-CN', {
@@ -142,6 +171,8 @@ const recordSnack = () => {
   console.log('记录加餐')
   // 实现记录加餐逻辑
 }
+
+const showFoodDatabase = ref(false)
 </script>
 
 <style scoped>
@@ -299,6 +330,83 @@ const recordSnack = () => {
   border-bottom: none;
 }
 
+/* 食物数据库卡片样式 */
+.food-database-card {
+  text-align: center;
+}
+
+.food-database-content p {
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-md);
+}
+
+.food-database-btn {
+  width: 100%;
+}
+
+/* 模态框样式 */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-index-modal);
+  padding: var(--spacing-lg);
+}
+
+.modal-content {
+  background: var(--color-background-primary);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-xl);
+  max-width: 90vw;
+  max-height: 90vh;
+  width: 1200px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-lg);
+  border-bottom: 1px solid var(--color-border-primary);
+  background: var(--color-background-secondary);
+}
+
+.modal-header h2 {
+  margin: 0;
+  color: var(--color-primary);
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: var(--spacing-xs);
+  color: var(--color-text-secondary);
+  border-radius: var(--border-radius-full);
+  transition: all 0.2s ease;
+}
+
+.close-btn:hover {
+  background: var(--color-gray-100);
+  color: var(--color-text-primary);
+}
+
+.modal-body {
+  flex: 1;
+  overflow: auto;
+  max-height: calc(90vh - 80px);
+}
+
 /* 响应式设计 */
 @media (max-width: 768px) {
   .nutrition-view {
@@ -319,6 +427,21 @@ const recordSnack = () => {
   
   .stat-unit {
     display: none;
+  }
+
+  .modal-overlay {
+    padding: var(--spacing-sm);
+  }
+  
+  .modal-content {
+    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+  }
+  
+  .modal-header {
+    padding: var(--spacing-md);
   }
 }
 </style>
