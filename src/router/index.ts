@@ -41,36 +41,6 @@ const routes: Array<RouteRecordRaw> = [
     }
   },
   {
-    path: '/sleep',
-    name: 'Sleep',
-    component: () => import('@/views/Sleep.vue'),
-    meta: {
-      title: '睡眠',
-      icon: '😴',
-      requiresAuth: true
-    }
-  },
-  {
-    path: '/stress',
-    name: 'Stress',
-    component: () => import('@/views/Stress.vue'),
-    meta: {
-      title: '压力管理',
-      icon: '😌',
-      requiresAuth: true
-    }
-  },
-  {
-    path: '/knowledge',
-    name: 'Knowledge',
-    component: () => import('@/views/Knowledge.vue'),
-    meta: {
-      title: '知识库',
-      icon: '📚',
-      requiresAuth: true
-    }
-  },
-  {
     path: '/settings',
     name: 'Settings',
     component: () => import('@/views/Settings.vue'),

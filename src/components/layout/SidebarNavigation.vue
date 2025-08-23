@@ -7,14 +7,11 @@ const router = useRouter()
 const route = useRoute()
 const layoutStore = useLayoutStore()
 
-// 导航项配置
+// 导航项配置 - MVP版本，只保留首页、运动、饮食、设置四个核心模块
 const navItems = ref([
   { id: 'dashboard', path: '/', icon: '🏠', label: '首页', active: true },
   { id: 'exercise', path: '/exercise', icon: '🏃', label: '运动', active: false },
   { id: 'nutrition', path: '/nutrition', icon: '🍎', label: '饮食', active: false },
-  { id: 'sleep', path: '/sleep', icon: '😴', label: '睡眠', active: false },
-  { id: 'stress', path: '/stress', icon: '😌', label: '压力', active: false },
-  { id: 'knowledge', path: '/knowledge', icon: '📚', label: '知识库', active: false },
   { id: 'settings', path: '/settings', icon: '⚙️', label: '设置', active: false }
 ])
 
